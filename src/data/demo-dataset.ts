@@ -169,7 +169,7 @@ function build(): Dataset {
     const progress = (DAYS - d) / DAYS;
 
     for (const env of environments) {
-      const p = profiles[env.id];
+      const p = profiles[env.id]!;
       const runId = `RUN-${env.id}-${day.toISOString().slice(0, 10)}`;
       const drift = 1 + p.drift * Math.max(0, progress - 0.55);
       const jitter = () => 0.92 + rnd() * 0.16;
@@ -197,7 +197,7 @@ function build(): Dataset {
 
           const duration = round(p.duration * drift * (0.6 + rnd() * 0.9));
           clock += Math.round(duration * 1000) + Math.round(rnd() * 4000);
-          const fm = failureMessages[Math.floor(rnd() * failureMessages.length)];
+          const fm = failureMessages[Math.floor(rnd() * failureMessages.length)]!;
           const isFail = status === "failed";
 
           executions.push({
@@ -215,14 +215,16 @@ function build(): Dataset {
             workerId: `worker-${1 + Math.floor(rnd() * 4)}`,
             actuallyExecuted: status !== "blocked",
             steps: buildSteps(scenario, status, isFail ? fm.failedStep : undefined, rnd),
-            failure: isFail
+            ...(isFail
               ? {
-                  message: fm.message,
-                  browserError: fm.browserError,
-                  failedStep: fm.failedStep,
-                  lastSuccessfulStep: fm.lastSuccessfulStep,
+                  failure: {
+                    message: fm.message,
+                    ...(fm.browserError ? { browserError: fm.browserError } : {}),
+                    failedStep: fm.failedStep,
+                    lastSuccessfulStep: fm.lastSuccessfulStep,
+                  },
                 }
-              : undefined,
+              : {}),
           });
         }
       }
