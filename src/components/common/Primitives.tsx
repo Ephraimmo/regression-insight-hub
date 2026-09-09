@@ -114,7 +114,7 @@ export function StatTile({
   sub?: ReactNode;
   to?: string;
   search?: Record<string, string>;
-  tone?: "pass" | "fail";
+  tone?: "pass" | "fail" | undefined;
 }) {
   const inner = (
     <>
