@@ -17,7 +17,7 @@ export const Route = createFileRoute("/teams")({
       { property: "og:description", content: "Regression quality grouped by owning team." },
     ],
   }),
-  component: Teams;
+  component: Teams,
 });
 
 function Teams() {
