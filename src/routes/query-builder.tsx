@@ -159,12 +159,7 @@ function QueryBuilder() {
           {(outputs.includes("chart") || outputs.includes("table")) && (
             <Panel title="Trend" description="One series per environment in scope.">
               {trend.points.length && value !== null ? (
-                <TrendChart
-                  points={trend.points}
-                  series={trend.series}
-                  unit={metricUnits[activeMetric]}
-                  label={metricLabels[activeMetric]}
-                />
+                <TrendChart points={trend.points} series={trend.series} unit={metricUnits[activeMetric]} />
               ) : (
                 <EmptyState title="Nothing to chart" hint="Widen the date range or clear a filter." />
               )}

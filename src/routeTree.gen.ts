@@ -11,7 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as DataSourcesRouteImport } from './routes/data-sources'
+import { Route as EnvironmentsRouteImport } from './routes/environments'
+import { Route as QueryBuilderRouteImport } from './routes/query-builder'
 import { Route as ResultsRouteImport } from './routes/results'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as TasksRouteImport } from './routes/tasks'
+import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as XmlHelperRouteImport } from './routes/xml-helper'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,9 +30,39 @@ const AssistantRoute = AssistantRouteImport.update({
   path: '/assistant',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DataSourcesRoute = DataSourcesRouteImport.update({
+  id: '/data-sources',
+  path: '/data-sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnvironmentsRoute = EnvironmentsRouteImport.update({
+  id: '/environments',
+  path: '/environments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QueryBuilderRoute = QueryBuilderRouteImport.update({
+  id: '/query-builder',
+  path: '/query-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResultsRoute = ResultsRouteImport.update({
   id: '/results',
   path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamsRoute = TeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
   getParentRoute: () => rootRouteImport,
 } as any)
 const XmlHelperRoute = XmlHelperRouteImport.update({
@@ -38,34 +74,89 @@ const XmlHelperRoute = XmlHelperRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/environments': typeof EnvironmentsRoute
+  '/query-builder': typeof QueryBuilderRoute
   '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/teams': typeof TeamsRoute
   '/xml-helper': typeof XmlHelperRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/environments': typeof EnvironmentsRoute
+  '/query-builder': typeof QueryBuilderRoute
   '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/teams': typeof TeamsRoute
   '/xml-helper': typeof XmlHelperRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/data-sources': typeof DataSourcesRoute
+  '/environments': typeof EnvironmentsRoute
+  '/query-builder': typeof QueryBuilderRoute
   '/results': typeof ResultsRoute
+  '/settings': typeof SettingsRoute
+  '/tasks': typeof TasksRoute
+  '/teams': typeof TeamsRoute
   '/xml-helper': typeof XmlHelperRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/results' | '/xml-helper'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/data-sources'
+    | '/environments'
+    | '/query-builder'
+    | '/results'
+    | '/settings'
+    | '/tasks'
+    | '/teams'
+    | '/xml-helper'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/results' | '/xml-helper'
-  id: '__root__' | '/' | '/assistant' | '/results' | '/xml-helper'
+  to:
+    | '/'
+    | '/assistant'
+    | '/data-sources'
+    | '/environments'
+    | '/query-builder'
+    | '/results'
+    | '/settings'
+    | '/tasks'
+    | '/teams'
+    | '/xml-helper'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/data-sources'
+    | '/environments'
+    | '/query-builder'
+    | '/results'
+    | '/settings'
+    | '/tasks'
+    | '/teams'
+    | '/xml-helper'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
+  DataSourcesRoute: typeof DataSourcesRoute
+  EnvironmentsRoute: typeof EnvironmentsRoute
+  QueryBuilderRoute: typeof QueryBuilderRoute
   ResultsRoute: typeof ResultsRoute
+  SettingsRoute: typeof SettingsRoute
+  TasksRoute: typeof TasksRoute
+  TeamsRoute: typeof TeamsRoute
   XmlHelperRoute: typeof XmlHelperRoute
 }
 
@@ -85,11 +176,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssistantRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/data-sources': {
+      id: '/data-sources'
+      path: '/data-sources'
+      fullPath: '/data-sources'
+      preLoaderRoute: typeof DataSourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/environments': {
+      id: '/environments'
+      path: '/environments'
+      fullPath: '/environments'
+      preLoaderRoute: typeof EnvironmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/query-builder': {
+      id: '/query-builder'
+      path: '/query-builder'
+      fullPath: '/query-builder'
+      preLoaderRoute: typeof QueryBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/results': {
       id: '/results'
       path: '/results'
       fullPath: '/results'
       preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teams': {
+      id: '/teams'
+      path: '/teams'
+      fullPath: '/teams'
+      preLoaderRoute: typeof TeamsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/xml-helper': {
@@ -105,7 +238,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
+  DataSourcesRoute: DataSourcesRoute,
+  EnvironmentsRoute: EnvironmentsRoute,
+  QueryBuilderRoute: QueryBuilderRoute,
   ResultsRoute: ResultsRoute,
+  SettingsRoute: SettingsRoute,
+  TasksRoute: TasksRoute,
+  TeamsRoute: TeamsRoute,
   XmlHelperRoute: XmlHelperRoute,
 }
 export const routeTree = rootRouteImport
