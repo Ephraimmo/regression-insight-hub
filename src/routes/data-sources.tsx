@@ -17,7 +17,7 @@ export const Route = createFileRoute("/data-sources")({
       { property: "og:description", content: "Regression exports, workbooks, XML Helper docs and task trackers." },
     ],
   }),
-  component: DataSources;
+  component: DataSources,
 });
 
 function DataSources() {
