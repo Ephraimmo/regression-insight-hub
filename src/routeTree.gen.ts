@@ -14,6 +14,7 @@ import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as DataSourcesRouteImport } from './routes/data-sources'
 import { Route as EnvironmentsRouteImport } from './routes/environments'
 import { Route as QueryBuilderRouteImport } from './routes/query-builder'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TasksRouteImport } from './routes/tasks'
@@ -43,6 +44,11 @@ const EnvironmentsRoute = EnvironmentsRouteImport.update({
 const QueryBuilderRoute = QueryBuilderRouteImport.update({
   id: '/query-builder',
   path: '/query-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResultsRoute = ResultsRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/data-sources': typeof DataSourcesRoute
   '/environments': typeof EnvironmentsRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reports': typeof ReportsRoute
   '/results': typeof ResultsRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/data-sources': typeof DataSourcesRoute
   '/environments': typeof EnvironmentsRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reports': typeof ReportsRoute
   '/results': typeof ResultsRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/data-sources': typeof DataSourcesRoute
   '/environments': typeof EnvironmentsRoute
   '/query-builder': typeof QueryBuilderRoute
+  '/reports': typeof ReportsRoute
   '/results': typeof ResultsRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/data-sources'
     | '/environments'
     | '/query-builder'
+    | '/reports'
     | '/results'
     | '/settings'
     | '/tasks'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/data-sources'
     | '/environments'
     | '/query-builder'
+    | '/reports'
     | '/results'
     | '/settings'
     | '/tasks'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/data-sources'
     | '/environments'
     | '/query-builder'
+    | '/reports'
     | '/results'
     | '/settings'
     | '/tasks'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   DataSourcesRoute: typeof DataSourcesRoute
   EnvironmentsRoute: typeof EnvironmentsRoute
   QueryBuilderRoute: typeof QueryBuilderRoute
+  ReportsRoute: typeof ReportsRoute
   ResultsRoute: typeof ResultsRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
@@ -195,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/query-builder'
       fullPath: '/query-builder'
       preLoaderRoute: typeof QueryBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/results': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   DataSourcesRoute: DataSourcesRoute,
   EnvironmentsRoute: EnvironmentsRoute,
   QueryBuilderRoute: QueryBuilderRoute,
+  ReportsRoute: ReportsRoute,
   ResultsRoute: ResultsRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
